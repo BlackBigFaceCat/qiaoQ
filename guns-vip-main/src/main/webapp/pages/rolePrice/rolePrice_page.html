@@ -1,0 +1,80 @@
+@layout("/common/_container.html",{js:["/assets/rolePrice/rolePrice_page.js"]}){
+
+
+<style type="text/css">
+    .layui-table-cell {
+        height: auto !important;
+        white-space: normal;
+    }
+</style>
+<script type="text/html" id="productImg">
+    <img style="width: 140px;height: 100px;" src="{{d.productImage}}">
+</script>
+
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">修改</span>
+</div>
+
+<!-- 正文开始 -->
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <!-- 左 -->
+        <div class="layui-col-sm12 layui-col-md4">
+
+            <div class="layui-card">
+                <div class="layui-card-body layui-text">
+                    <table class="layui-table" id="rolePriceTable" lay-filter="rolePriceTable"></table>
+
+                </div>
+                <script type="text/html" id="tableBar">
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="editPrice">设置百分比</a>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="editProductDetialPrice">详细设置</a>
+                </script>
+            </div>
+
+        </div>
+        <!-- 左  结束 -->
+
+        <!-- 右 -->
+        <div class="layui-col-sm12 layui-col-md8">
+            <div class="layui-card">
+                <div class="layui-card-body layui-text">
+                    <table class="layui-table" id="roleDetialPriceTable" lay-filter="rolePriceTable"></table>
+                </div>
+
+                <script type="text/html" id="detialPriceTableBar">
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="editDetialPrice">设置价钱</a>
+                </script>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--                    <form id="rolePriceForm" lay-filter="rolePriceForm" class="layui-form model-form" style="max-width: 700px;margin: 40px auto;">-->
+<!--                        <input name="id" type="hidden"/>-->
+<!--                        <div class="layui-form-item">-->
+<!--                            <label class="layui-form-label">角色ID<span style="color: red;">*</span></label>-->
+<!--                            <div class="layui-input-block">-->
+<!--                                <input id="roleId" name="roleId" placeholder="请输入角色ID" type="text" class="layui-input" lay-verify="required" required/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="layui-form-item">-->
+<!--                            <label class="layui-form-label">价钱<span style="color: red;">*</span></label>-->
+<!--                            <div class="layui-input-block">-->
+<!--                                <input id="price" name="price" placeholder="请输入价钱" type="text" class="layui-input" lay-verify="required" required/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="layui-form-item">-->
+<!--                            <div class="layui-input-block">-->
+<!--                                <button class="layui-btn" lay-filter="btnSubmit" lay-submit>&emsp;提交&emsp;</button>-->
+<!--                                <button class="layui-btn layui-btn-primary" type="button" id="backupPage">&emsp;返回&emsp;</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </form>-->
+
+@}

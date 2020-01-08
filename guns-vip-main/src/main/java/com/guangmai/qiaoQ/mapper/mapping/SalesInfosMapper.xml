@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guangmai.qiaoQ.mapper.SalesInfosMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.guangmai.qiaoQ.entity.SalesInfos">
+        <id column="id" property="id" />
+        <result column="sale_name" property="saleName" />
+        <result column="phone" property="phone" />
+        <result column="location" property="location" />
+        <result column="product_id" property="productId" />
+        <result column="sale_num" property="saleNum" />
+        <result column="pay_money" property="payMoney" />
+        <result column="state" property="state" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id AS "id", send_user_id AS "sendUserId", sale_name AS "saleName", phone AS "phone", location AS "location", product_id AS "productId", sale_num AS "saleNum", pay_money AS "payMoney", state AS "state"
+    </sql>
+
+
+    <select id="customList" resultType="com.guangmai.qiaoQ.model.SalesInfosParam" parameterType="com.guangmai.qiaoQ.model.SalesInfosParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sales_infos where 1 = 1
+            <if test="paramCondition.id != null and paramCondition.id != ''">
+                and id like CONCAT('%',#{paramCondition.id},'%')
+            </if>
+            <if test="paramCondition.location != null and paramCondition.location != ''">
+                and location like CONCAT('%',#{paramCondition.location},'%')
+            </if>
+            <if test="paramCondition.payMoney != null and paramCondition.payMoney != ''">
+                and pay_money like CONCAT('%',#{paramCondition.payMoney},'%')
+            </if>
+            <if test="paramCondition.phone != null and paramCondition.phone != ''">
+                and phone like CONCAT('%',#{paramCondition.phone},'%')
+            </if>
+            <if test="paramCondition.productId != null and paramCondition.productId != ''">
+                and product_id like CONCAT('%',#{paramCondition.productId},'%')
+            </if>
+            <if test="paramCondition.saleName != null and paramCondition.saleName != ''">
+                and sale_name like CONCAT('%',#{paramCondition.saleName},'%')
+            </if>
+            <if test="paramCondition.saleNum != null and paramCondition.saleNum != ''">
+                and sale_num like CONCAT('%',#{paramCondition.saleNum},'%')
+            </if>
+            <if test="paramCondition.state != null and paramCondition.state != ''">
+                and state = #{paramCondition.state}
+            </if>
+    </select>
+
+    <select id="customMapList" resultType="map" parameterType="com.guangmai.qiaoQ.model.SalesInfosParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sales_infos where 1 = 1
+            <if test="paramCondition.id != null and paramCondition.id != ''">
+                and id like CONCAT('%',#{paramCondition.id},'%')
+            </if>
+            <if test="paramCondition.location != null and paramCondition.location != ''">
+                and location like CONCAT('%',#{paramCondition.location},'%')
+            </if>
+            <if test="paramCondition.payMoney != null and paramCondition.payMoney != ''">
+                and pay_money like CONCAT('%',#{paramCondition.payMoney},'%')
+            </if>
+            <if test="paramCondition.phone != null and paramCondition.phone != ''">
+                and phone like CONCAT('%',#{paramCondition.phone},'%')
+            </if>
+            <if test="paramCondition.productId != null and paramCondition.productId != ''">
+                and product_id like CONCAT('%',#{paramCondition.productId},'%')
+            </if>
+            <if test="paramCondition.saleName != null and paramCondition.saleName != ''">
+                and sale_name like CONCAT('%',#{paramCondition.saleName},'%')
+            </if>
+            <if test="paramCondition.saleNum != null and paramCondition.saleNum != ''">
+                and sale_num like CONCAT('%',#{paramCondition.saleNum},'%')
+            </if>
+            <if test="paramCondition.state != null and paramCondition.state != ''">
+                and state like CONCAT('%',#{paramCondition.state},'%')
+            </if>
+    </select>
+
+    <select id="customPageList" resultType="com.guangmai.qiaoQ.model.SalesInfosParam" parameterType="com.guangmai.qiaoQ.model.SalesInfosParam">
+        select
+            s.id AS "id", s.send_user_id AS "sendUserId", s.sale_name AS "saleName",s.phone AS "phone", s.location AS "location",
+            s.product_id AS "productId", s.sale_num AS "saleNum", s.pay_money AS "payMoney", s.state AS "state" from sales_infos s,product_infos t,sys_user us
+         where
+            s.send_user_id = #{paramCondition.sendUserId} and s.product_id = t.id and us.user_id = s.send_user_id
+        <if test="paramCondition.saleName != null and paramCondition.saleName != ''">
+            and (
+            t.product_name like CONCAT('%',#{paramCondition.saleName},'%')
+            or s.phone like CONCAT('%',#{paramCondition.saleName},'%')
+            or us.name like CONCAT('%',#{paramCondition.saleName},'%')
+            or s.location like CONCAT('%',#{paramCondition.saleName},'%')
+            or s.pay_money like CONCAT('%',#{paramCondition.saleName},'%')
+            or s.sale_name like CONCAT('%',#{paramCondition.saleName},'%')
+            )
+        </if>
+    </select>
+
+    <select id="customPageMapList" resultType="map" parameterType="com.guangmai.qiaoQ.model.SalesInfosParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sales_infos where 1 = 1
+            <if test="paramCondition.id != null and paramCondition.id != ''">
+                and id like CONCAT('%',#{paramCondition.id},'%')
+            </if>
+            <if test="paramCondition.location != null and paramCondition.location != ''">
+                and location like CONCAT('%',#{paramCondition.location},'%')
+            </if>
+            <if test="paramCondition.payMoney != null and paramCondition.payMoney != ''">
+                and pay_money like CONCAT('%',#{paramCondition.payMoney},'%')
+            </if>
+            <if test="paramCondition.phone != null and paramCondition.phone != ''">
+                and phone like CONCAT('%',#{paramCondition.phone},'%')
+            </if>
+            <if test="paramCondition.productId != null and paramCondition.productId != ''">
+                and product_id like CONCAT('%',#{paramCondition.productId},'%')
+            </if>
+            <if test="paramCondition.saleName != null and paramCondition.saleName != ''">
+                and sale_name like CONCAT('%',#{paramCondition.saleName},'%')
+            </if>
+            <if test="paramCondition.saleNum != null and paramCondition.saleNum != ''">
+                and sale_num like CONCAT('%',#{paramCondition.saleNum},'%')
+            </if>
+            <if test="paramCondition.state != null and paramCondition.state != ''">
+                and state like CONCAT('%',#{paramCondition.state},'%')
+            </if>
+    </select>
+
+</mapper>

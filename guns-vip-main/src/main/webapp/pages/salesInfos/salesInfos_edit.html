@@ -1,0 +1,109 @@
+@layout("/common/_container.html",{js:["/assets/salesInfos/salesInfos_edit.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">修改</span>
+</div>
+
+
+
+<!-- 正文开始 -->
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <!-- 左 -->
+        <div class="layui-col-sm12 layui-col-md3" id="imageShow">
+            <br><br><br><br><br>
+            <div class="layui-card">
+                <div class="layui-card-body" style="padding-left: 35px;">
+                    <div class="text-center layui-text">
+                        <div class="user-info-head" id="imgHead">
+                            <img id="productImage" src="" style="width:220px;height: 250px;"/>
+                        </div>
+                        <br><br><br><br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 左  结束 -->
+
+        <!-- 右 -->
+        <div class="layui-col-sm12 layui-col-md9">
+            <div class="layui-card">
+                <div class="layui-card-body layui-text">
+
+                    <form id="salesInfosForm" lay-filter="salesInfosForm" class="layui-form model-form" style="max-width: 700px;margin: 40px auto;">
+                        <input name="id" type="hidden"/>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">姓名<span style="color: red;">*</span></label>
+                            <div class="layui-input-block">
+                                <input id="saleName" name="saleName" placeholder="请输入姓名" type="text" class="layui-input" lay-verify="required" required/>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">电话<span style="color: red;">*</span></label>
+                            <div class="layui-input-block">
+                                <input id="phone" name="phone" placeholder="请输入电话" type="text" class="layui-input" lay-verify="required" required/>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">地址<span style="color: red;">*</span></label>
+                            <div class="layui-input-block">
+                                <input id="location" name="location" placeholder="请输入地址" type="text" class="layui-input" lay-verify="required" required/>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">货物名称<span style="color: red;">*</span></label>
+                            <div class="layui-input-block">
+                                <input id="productName" name="productName" placeholder="请输入货物名称" readonly type="text" class="layui-input" lay-verify="required" required/>
+                                <input type="hidden" name="productId" id="productId">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">购买数量<span style="color: red;">*</span></label>
+                                    <div class="layui-input-block">
+                                        <input id="saleNum" name="saleNum" onchange="value=changeSaleNum(this.value)" placeholder="请输入购买数量" type="text" class="layui-input" lay-verify="required" required/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">库存数量<span style="color: red;">*</span></label>
+                                    <div class="layui-input-block">
+                                        <input id="productNumber" name="productNumber" type="number" class="layui-input" readonly lay-verify="required" required/>
+                                        <input id="productNumberFlag" type="hidden" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">付款金额<span style="color: red;">*</span></label>
+                            <div class="layui-input-block">
+                                <input id="payMoney" name="payMoney" placeholder="请输入付款金额" readonly type="text" class="layui-input" lay-verify="required" required/>
+                            </div>
+                        </div>
+
+                        <input id="productPrice" name="productPrice" type="hidden">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">付款状态<span style="color: red;">*</span></label>
+                            <div class="layui-input-block">
+                                <input id="state" name="state" placeholder="请输入付款状态" type="text" readonly class="layui-input" lay-verify="required" required/>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-filter="btnSubmit" lay-submit>&emsp;提交&emsp;</button>
+                                <button class="layui-btn layui-btn-primary" type="button" id="backupPage">&emsp;返回&emsp;</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@}

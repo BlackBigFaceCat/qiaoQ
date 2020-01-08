@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guangmai.qiaoQ.mapper.RolePriceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.guangmai.qiaoQ.entity.RolePrices">
+        <id column="id" property="id" />
+        <result column="role_id" property="roleId" />
+        <result column="price" property="price" />
+        <result column="product_id" property="productId" />
+        <result column="price_present" property="pricePresent" />
+        <result column="is_parent" property="isParent" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id AS "id", role_id AS "roleId", price AS "price", product_id AS productId,price_present AS pricePresent,is_parent AS isParent
+    </sql>
+
+    <insert id="addInfos">
+        insert into role_price (role_id,is_parent,product_id) values (#{rolePriceParam.roleId},#{rolePriceParam.isParent},#{rolePriceParam.productId})
+    </insert>
+
+    <select id="listProductPriceByRoleIdAndProductId" resultType="com.guangmai.qiaoQ.model.RolePriceParam">
+        select * from role_price where role_id = #{roleId} and product_id =#{productId}
+    </select>
+
+    <select id="listProductPriceParentByRoleId" resultType="com.guangmai.qiaoQ.model.RolePriceParam">
+        select * from role_price where role_id = #{roleId} and is_parent = '1'
+    </select>
+
+    <select id="customList" resultType="com.guangmai.qiaoQ.model.RolePriceParam" parameterType="com.guangmai.qiaoQ.model.RolePriceParam">
+        select
+        <include refid="Base_Column_List"/>
+        from role_price where 1 = 1
+            <if test="paramCondition.roleId != null and paramCondition.roleId != ''">
+                and role_id like CONCAT('%',#{paramCondition.roleId},'%')
+            </if>
+            <if test="paramCondition.price != null and paramCondition.price != ''">
+                and price like CONCAT('%',#{paramCondition.price},'%')
+            </if>
+    </select>
+
+    <select id="customMapList" resultType="map" parameterType="com.guangmai.qiaoQ.model.RolePriceParam">
+        select
+        <include refid="Base_Column_List"/>
+        from role_price where 1 = 1
+            <if test="paramCondition.roleId != null and paramCondition.roleId != ''">
+                and role_id like CONCAT('%',#{paramCondition.roleId},'%')
+            </if>
+            <if test="paramCondition.price != null and paramCondition.price != ''">
+                and price like CONCAT('%',#{paramCondition.price},'%')
+            </if>
+    </select>
+
+    <select id="listRolePrice" resultType="com.guangmai.qiaoQ.model.RolePriceParam" >
+        select  r.id AS id, r.role_id AS roleId, r.price AS price, r.product_id AS productId ,sr.name AS roleName,r.price_present AS pricePresent
+        from role_price r ,sys_role sr where sr.role_id = r.role_id and r.is_parent = '1'
+    </select>
+
+    <select id="customPageList" resultType="com.guangmai.qiaoQ.model.RolePriceParam" parameterType="com.guangmai.qiaoQ.model.RolePriceParam">
+        select
+        r.id AS id, r.role_id AS roleId, r.price AS price, r.product_id AS productId ,p.product_price AS productPrice ,p.product_name AS productName,sr.name AS roleName,r.price_present AS pricePresent
+        from role_price r,product_infos p,sys_role sr where r.product_id = p.id and sr.role_id = r.role_id and r.is_parent != '1' and r.role_id = #{paramCondition.roleId}
+
+    </select>
+
+    <select id="customPageMapList" resultType="map" parameterType="com.guangmai.qiaoQ.model.RolePriceParam">
+        select
+        <include refid="Base_Column_List"/>
+        from role_price where 1 = 1
+            <if test="paramCondition.roleId != null and paramCondition.roleId != ''">
+                and role_id like CONCAT('%',#{paramCondition.roleId},'%')
+            </if>
+            <if test="paramCondition.price != null and paramCondition.price != ''">
+                and price like CONCAT('%',#{paramCondition.price},'%')
+            </if>
+    </select>
+
+</mapper>

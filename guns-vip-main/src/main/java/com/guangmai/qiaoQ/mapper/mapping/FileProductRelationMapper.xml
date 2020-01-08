@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guangmai.qiaoQ.mapper.FileProductRelationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.guangmai.qiaoQ.entity.FileProductRelation">
+        <id column="id" property="id" />
+        <result column="product_id" property="productId" />
+        <result column="file_id" property="fileId" />
+        <result column="user_id" property="userId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id AS "id", product_id AS "productId", file_id AS "fileId",user_id AS userId
+    </sql>
+
+
+    <select id="customList" resultType="com.guangmai.qiaoQ.model.FileProductRelationDTO" parameterType="com.guangmai.qiaoQ.model.FileProductRelationDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from file_product_relation where 1 = 1
+    </select>
+
+    <select id="customMapList" resultType="map" parameterType="com.guangmai.qiaoQ.model.FileProductRelationDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from file_product_relation where 1 = 1
+    </select>
+
+    <select id="customPageList" resultType="com.guangmai.qiaoQ.model.FileProductRelationDTO" parameterType="com.guangmai.qiaoQ.model.FileProductRelationDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from file_product_relation where 1 = 1
+    </select>
+
+    <select id="customPageMapList" resultType="map" parameterType="com.guangmai.qiaoQ.model.FileProductRelationDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from file_product_relation where 1 = 1
+    </select>
+
+    <select id="listMaxIdRelation" resultType="java.util.Map">
+        select * from file_product_relation where user_id = ${userId} order by id desc
+    </select>
+</mapper>
